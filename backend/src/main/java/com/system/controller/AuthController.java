@@ -15,7 +15,7 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping("/auth/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         if (userService.registerUser(user) != null) {
             return ResponseEntity.ok("成功注册用户");
@@ -24,7 +24,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<String> login(@RequestBody User user) {
         Optional<User> loggedInUser = userService.loginUser(user.getPhone(), user.getPassword());
         if (loggedInUser.isPresent()) {
